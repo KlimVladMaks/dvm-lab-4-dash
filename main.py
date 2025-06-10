@@ -36,15 +36,33 @@ top10_table = dbc.Card(
 )
 
 # ---------- Диаграмма 2 ----------
+"""
+- Указать число стран для каждой части света.
+"""
+df = pd.read_csv('dataset_2.csv')
 
-df = pd.DataFrame({
-    'x': [1, 2, 3, 4, 5],
-    'y': [10, 20, 30, 40, 50]
-})
+fig2 = px.bar(
+    df,
+    x='Часть света',
+    y='Медиана',
+    title='Медианное значение уровня удовлетворённости жизнью по частям света (2024)',
+    labels={'Медиана': 'Медиана', 'Часть света': 'Часть света'},
+    color='Часть света',
+    text='Медиана'
+)
 
-fig2 = px.bar(df, x='x', y='y', title="График 2 (левый столбец)")
-fig3 = px.scatter(df, x='x', y='y', title="График 3 (правый столбец)")
-fig4 = px.pie(df, names='x', values='y', title="График 4 (правый столбец)")
+fig2.update_traces(texttemplate='%{text:.2f}', textposition='outside')
+fig2.update_layout(
+    showlegend=False,
+    height=550,
+    uniformtext_minsize=8,
+    uniformtext_mode='hide',
+    yaxis_title='Медиана',
+    xaxis_title='',
+    title_x=0.5
+)
+
+# ---------- Диаграмма 3 ----------
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -54,15 +72,13 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     [
-                        top10_table,
-                        dcc.Graph(figure=fig2),
+                        top10_table
                     ],
                     width=6,
                 ),
                 dbc.Col(
                     [
-                        dcc.Graph(figure=fig3),
-                        dcc.Graph(figure=fig4),
+                        dcc.Graph(figure=fig2)
                     ],
                     width=6,
                 ),
