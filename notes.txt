@@ -1,0 +1,5 @@
+Включение venv:
+venv\Scripts\activate
+
+Выключение venv:
+deactivate
