@@ -193,20 +193,22 @@ app.layout = dbc.Container(
             [
                 dbc.Col(
                     [
-                        top10_table,
-                        dcc.Graph(figure=fig3),
-                        dcc.Graph(figure=fig5),
-                        dcc.Graph(figure=fig7)
+                        html.Div(top10_table, className="border border-dark"),
+                        dcc.Graph(figure=fig3, className="border border-dark"),
+                        dcc.Graph(figure=fig5, className="border border-dark"),
+                        dcc.Graph(figure=fig7, className="border border-dark")
                     ],
                     width=6,
+                    className="pe-0"
                 ),
                 dbc.Col(
                     [
-                        dcc.Graph(figure=fig2),
-                        dcc.Graph(figure=fig4),
-                        dcc.Graph(figure=fig6)
+                        dcc.Graph(figure=fig2, className="border border-dark"),
+                        dcc.Graph(figure=fig4, className="border border-dark"),
+                        dcc.Graph(figure=fig6, className="border border-dark")
                     ],
                     width=6,
+                    className="ps-0"
                 ),
             ]
         )
