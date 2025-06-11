@@ -170,10 +170,25 @@ fig7.update_layout(
     margin=dict(t=80, b=30, l=30, r=30)
 )
 
+# ---------- Дашборд -----------
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [
+        dbc.Row(
+            dbc.Col(
+                html.H1("Уровень удовлетворённости жизнью в мире", 
+                        className="text-center mt-2 mb-2"),
+                width=12
+            )
+        ),
+        dbc.Row(
+            dbc.Col(
+                html.H2("(Уровень удовлетворённости жизнью оценивается по шкале от 0 до 10)",
+                        className="text-center mb-4 text-muted"),
+                width=12
+            )
+        ),
         dbc.Row(
             [
                 dbc.Col(
