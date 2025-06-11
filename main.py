@@ -36,9 +36,6 @@ top10_table = dbc.Card(
 )
 
 # ---------- Диаграмма 2 ----------
-"""
-- Указать число стран для каждой части света.
-"""
 df = pd.read_csv('dataset_2.csv')
 
 fig2 = px.bar(
@@ -80,7 +77,6 @@ fig3 = px.line(
 
 # ---------- Диаграмма 4 ----------
 df_population = pd.read_csv('dataset_4.csv')
-
 population_by_category = df_population.groupby('Категория')['Население'].sum().reset_index()
 
 fig4 = px.pie(
@@ -100,7 +96,7 @@ fig4.update_traces(
     hovertemplate='<b>%{label}</b><br>Население: %{value:,}'
 )
 fig4.update_layout(
-    legend_title_text='Категория'
+    showlegend=False
 )
 
 # ---------- Диаграмма 5 ----------
@@ -129,7 +125,7 @@ fig6 = px.bar(
     x='Динамика',
     y='Название',
     orientation='h',
-    title='Топ-10 стран с самым большим падением уровня<br>удовлетворённости жизнью с 2011 по 2024 годы',
+    title='Топ-10 стран с самым большим падением уровня удовлетворённости<br>жизнью с 2011 по 2024 годы',
     color_discrete_sequence=['#FF6347'],  # Красивый красный цвет (Tomato)
     text='Динамика'
 )
@@ -138,7 +134,7 @@ fig6.update_layout(
     showlegend=False
 )
 
-# ---------- Диаграмма 6 ----------
+# ---------- Диаграмма 7 ----------
 df_categories = pd.read_csv('dataset_6.csv')
 
 category_counts = df_categories['Категория'].value_counts().reset_index()
@@ -155,31 +151,27 @@ fig7 = px.pie(
     category_counts,
     values='Количество стран',
     names='Категория',
-    title='Распределение стран по динамике уровня удовлетворенности жизнью',
+    title='Разбивка стран по уровню роста/падения уровня удовлетворённости<br>жизнью с 2011 по 2024 годы',
     color='Категория',
     color_discrete_map=color_map
 )
 
 fig7.update_traces(
-    textinfo='percent+label+value',
+    textinfo='label+value',
     textposition='inside',
     hovertemplate='<b>%{label}</b><br>Количество стран: %{value}<br>Доля: %{percent}',
-    marker=dict(line=dict(color='#FFFFFF', width=1))  # Белые границы между секторами
+    marker=dict(line=dict(color='#FFFFFF', width=1))
 )
 
 fig7.update_layout(
     uniformtext_minsize=12,
     uniformtext_mode='hide',
-    legend_title_text='Категории динамики',
+    showlegend=False,
     margin=dict(t=80, b=30, l=30, r=30)
 )
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-"""
-- Добавить главный заголовок "Уровень удовлетворённости жизнью в мире"
-- Добавить подзаголовок "(Уровень удовлетворённости жизнью оценивается по шкале от 0 до 10)"
-"""
 app.layout = dbc.Container(
     [
         dbc.Row(
