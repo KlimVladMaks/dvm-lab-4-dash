@@ -126,7 +126,7 @@ fig6 = px.bar(
     y='Название',
     orientation='h',
     title='Топ-10 стран с самым большим падением уровня удовлетворённости<br>жизнью с 2011 по 2024 годы',
-    color_discrete_sequence=['#FF6347'],  # Красивый красный цвет (Tomato)
+    color_discrete_sequence=['#FF6347'],
     text='Динамика'
 )
 
